@@ -1,27 +1,20 @@
-
-  
-
-
+![SharkLysis Banner](https://github.com/Saadmaliikk/SharkLysis/blob/main/assests/banner.png)
 SharkLysis - Advanced Network Forensic Analysis Toolkit
 
-  
-  
 
+# 🔍 Overview
+SharkLysis is an advanced PCAP/PCAPNG analysis toolkit designed for cybersecurity professionals, incident responders, and network administrators. It offers robust features for:
 
+Network Traffic Analysis: Deep packet-level insights.
+Threat Detection: Automated identification of malicious activities.
+Security Reporting: Professional, actionable reports.
+Threat Intelligence Integration: Customizable IoC feeds.
 
-🔍 Overview
-SharkLysis is a powerful PCAP/PCAPNG analysis tool tailored for cybersecurity professionals, incident responders, and network administrators. It provides advanced features for:
+Ideal Use Cases:  
 
-Network Traffic Analysis: Deep insights into packet-level data.
-Threat Detection: Identify malicious patterns and anomalies.
-Security Reporting: Generate professional, actionable reports.
-Threat Intelligence: Integrate custom IoCs for enhanced detection.
-
-Ideal Use Cases:
-
-Incident response
-Threat hunting
-Malware analysis
+Incident response  
+Threat hunting  
+Malware analysis  
 Network forensics
 
 graph LR
@@ -33,49 +26,49 @@ graph LR
   D --> G[Forensic Analysis]
 
 
-✨ Key Features
-🕵️‍♂️ Advanced Threat Detection
+# ✨ Key Features
+## 🕵️‍♂️ Advanced Threat DetectionKey Features
 
 Malicious Patterns: Detect SQL injection, XSS, and C2 communications.
 Anomaly Detection: Identify DNS tunneling, unusual ports, and beaconing.
-IoC Matching: Leverage custom threat intelligence feeds.
-Certificate Analysis: Spot suspicious SSL/TLS certificates.
+IoC Matching: Integrate custom threat intelligence feeds.
+Certificate Analysis: Detect suspicious SSL/TLS certificates.
 
-📊 Comprehensive Analysis
+## 📊 Comprehensive Analysis
 
 Protocol distribution statistics
 Top talker identification (highest traffic sources/destinations)
 Traffic timeline visualization
 Network communication graphs
 
-📈 Professional Reporting
+## 📈Professional Reporting
 
 Interactive console reports for quick insights
 HTML reports with embedded visualizations
 Prioritized findings (High/Medium/Low severity)
-Exportable graphs and charts for sharing
+Exportable graphs and charts
 
-⚙️ Flexible Configuration
+## ⚙️Flexible Configuration
 
-Custom threat intelligence feeds
+Customizable threat intelligence feeds
 Adjustable detection thresholds
-Extensible plugin architecture for adding new features
+Extensible plugin architecture
 
 
-🚀 Getting Started
-Prerequisites
-Before running SharkLysis, ensure you have the following:
+# 🚀 Getting Started
+### Prerequisites
+Ensure the following are installed before running SharkLysis:
 
 Python: Version 3.8 or higher
 libpcap Libraries: Required for packet processing
-Memory: 4GB+ RAM (for large PCAP files)
+Memory: 4GB+ RAM (recommended for large PCAP files)
 GeoIP Databases (optional, for IP geolocation):
 Download GeoLite2-City.mmdb and GeoLite2-ASN.mmdb from MaxMind.
-Place them in the project root (they are excluded from Git tracking per .gitignore).
+Place them in the project root (excluded from Git tracking per .gitignore).
 
 
 
-Installation
+### Installation
 Follow these steps to set up SharkLysis:
 
 Clone the Repository:
@@ -88,7 +81,7 @@ pip install -r requirements.txt
 
 
 
-Basic Usage
+### Basic Usage
 Run SharkLysis on a PCAP/PCAPNG file:
 python sharklysis.py <path_to_pcap_file>
 
@@ -96,33 +89,32 @@ Example:
 python sharklysis.py toolsmith.pcap
 
 
-📂 Project Structure
-Below is the directory structure of the SharkLysis project:
+# 📂 Project Structure
+### Directory Layout
 SharkLysis/
-├── assets/                  # Static assets (e.g., banner.png)
-├── graphs/                  # Generated network graphs
-├── reports/                 # HTML reports
-├── temp/                    # Temporary files
-├── iocs.txt                # Custom indicators of compromise
-├── malware_domains.txt     # Known malicious domains
-├── suspicious_ips.txt      # Suspicious IP addresses
-├── LICENSE                 # MIT License
-├── README.md               # Project documentation
-├── requirements.txt        # Python dependencies
-├── sharklysis.py           # Main analysis script
+├── assests/                  # Static assets (e.g., banner.png)
+├── graphs/                   # Generated network graphs
+├── reports/                  # HTML reports
+├── temp/                     # Temporary files
+├── iocs.txt                 # Custom indicators of compromise
+├── malware_domains.txt      # Known malicious domains
+├── suspicious_ips.txt       # Suspicious IP addresses
+├── LICENSE                  # MIT License
+├── README.md                # Project documentation
+├── requirements.txt         # Python dependencies
+├── sharklysis.py            # Main analysis script
 
-Sample PCAP Files
-The repository includes the following sample PCAP files for testing:
+### Sample PCAP Files
+The repository includes sample PCAP files for testing:
 
 toolsmith.pcap: General network traffic for analysis.
 hao123-com_packet-injection.pcap: Contains potential packet injection activity.
 MyFile.png.pcapng: Example of a PCAPNG file with embedded image data.
 
-Note: These files are for demonstration purposes. For real-world analysis, use your own captured network traffic.
+Note: These files are for demonstration. Use your own captured traffic for real-world analysis.
 
-📊 Sample Analysis Output
-Console Report Preview
-Here’s what a typical SharkLysis console report looks like:
+# 📊 Sample Analysis Output
+### Console Report Preview
 ------------------------------ SECURITY FINDINGS -------------------------------
 
 Suspicious IPs Detected (3):
@@ -142,41 +134,40 @@ SQL Injection Patterns Detected (12):
 Weak Protocols Detected:
   - TLS 1.0
 
-Generated Files
+### Generated Files
 SharkLysis generates the following during analysis:
 
-Reports: HTML reports saved in the reports/ directory.
-Graphs: Visualizations (e.g., network graphs) saved in the graphs/ directory.
-Temporary Files: Intermediate data stored in the temp/ directory.
+Reports: HTML reports saved in reports/.
+Graphs: Visualizations in graphs/.
+Temporary Files: Data in temp/.
 
 
-🛠 Configuration
-Customize SharkLysis by editing the following files:
-Threat Intelligence Feeds
+# 🛠Configuration
+### Threat Intelligence Feeds
 
 iocs.txt: Add custom indicators of compromise (IoCs).
 malware_domains.txt: List known malicious domains.
 suspicious_ips.txt: List known malicious IP addresses.
 
-GeoIP Databases
+### GeoIP Databases
 
-Place GeoLite2-City.mmdb and GeoLite2-ASN.mmdb in the project root for IP geolocation (excluded from Git tracking).
+Place GeoLite2-City.mmdb and GeoLite2-ASN.mmdb in the project root for geolocation (excluded from Git).
 
-Detection Rules
+### Detection Rules
 
-Modify the detect_malicious_patterns() function in sharklysis.py to add custom detection rules.
+Modify the detect_malicious_patterns() function in sharklysis.py to add custom rules.
 
 
-🤝 Contributing
-We welcome contributions from the security community! Here’s how you can get involved:
+# 🤝Contributing
+### How to Contribute
+We welcome contributions from the security community! Here’s how:
 
-Report Issues: Found a bug? Open an issue.
-Feature Requests: Suggest new features or enhancements.
+Report Issues: Open an issue.
+Feature Requests: Suggest new features.
 Pull Requests: Submit code improvements.
-Documentation: Help improve documentation and examples.
+Documentation: Enhance docs and examples.
 
-Development Setup
-Set up your development environment with these steps:
+### Development Setup
 
 Create a Virtual Environment:
 python -m venv venv
@@ -189,5 +180,5 @@ pip install -r requirements.txt
 
 
 
-📜 License
-Distributed under the MIT License. See the LICENSE file for more information.
+# 📜License
+Distributed under the MIT License. See LICENSE for details.
