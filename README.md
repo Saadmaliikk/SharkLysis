@@ -1,184 +1,104 @@
-![SharkLysis Banner](https://github.com/Saadmaliikk/SharkLysis/blob/main/assests/banner.png)
-SharkLysis - Advanced Network Forensic Analysis Toolkit
 
 
-# 🔍 Overview
-SharkLysis is an advanced PCAP/PCAPNG analysis toolkit designed for cybersecurity professionals, incident responders, and network administrators. It offers robust features for:
+![SharkLysis Logo](https://github.com/saadmaliikk/SharkLysis/blob/main/assests/banner.png)  
+# SharkLysis - Advanced PCAP/PCAPNG Analyzer
 
-Network Traffic Analysis: Deep packet-level insights.
-Threat Detection: Automated identification of malicious activities.
-Security Reporting: Professional, actionable reports.
-Threat Intelligence Integration: Customizable IoC feeds.
+SharkLysis is a Python-based tool designed to analyze PCAP/PCAPNG files for network traffic insights and security threats. It leverages `pyshark` for packet parsing, threat intelligence for identifying malicious activity, and generates detailed HTML reports and visualizations.
 
-Ideal Use Cases:  
+## Features
+- **Packet Analysis**: Parse PCAP/PCAPNG files to extract protocols, IP connections, DNS queries, and more.
+- **Threat Detection**: Identify malicious IPs, domains, SSL certificates, SQL injection attempts, XSS attempts, and potential C2 communications.
+- **TLS Analysis**: Detect weak ciphers, protocols, and expired or overly long-validity certificates.
+- **Geolocation**: Map IP addresses to geographic locations using GeoIP databases.
+- **WHOIS Lookup**: Retrieve domain registration details for DNS queries.
+- **Visualizations**: Generate charts (protocol distribution, top talkers, port activity, DNS queries, timeline) and network graphs.
+- **HTML Reports**: Comprehensive, styled HTML reports with embedded charts and security findings.
 
-Incident response  
-Threat hunting  
-Malware analysis  
-Network forensics
+## Requirements
+- Python 3.8+
+- Tshark (Wireshark command-line tool) installed and accessible
+- GeoIP databases (`GeoLite2-City.mmdb.gz`, `GeoLite2-ASN.mmdb`) from MaxMind
+- Dependencies listed in `requirements.txt`
 
-graph LR
-  A[PCAP/PCAPNG] --> B[Traffic Analysis]
-  B --> C[Threat Detection]
-  C --> D[Security Reporting]
-  D --> E[Incident Response]
-  D --> F[Threat Hunting]
-  D --> G[Forensic Analysis]
+## Installation
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/yourusername/sharklysis.git
+   cd sharklysis
+   ```
 
+2. **Set Up a Virtual Environment** (recommended):
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   ```
 
-# ✨ Key Features
-## 🕵️‍♂️ Advanced Threat DetectionKey Features
+3. **Install Dependencies**:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-Malicious Patterns: Detect SQL injection, XSS, and C2 communications.
-Anomaly Detection: Identify DNS tunneling, unusual ports, and beaconing.
-IoC Matching: Integrate custom threat intelligence feeds.
-Certificate Analysis: Detect suspicious SSL/TLS certificates.
+4. **Install Tshark**:
+   - On Ubuntu/Debian: `sudo apt-get install tshark`
+   - On macOS: `brew install wireshark`
+   - On Windows: Install Wireshark and ensure `tshark` is in your PATH.
 
-## 📊 Comprehensive Analysis
+5. **Prepare Data Files**:
+   - Place `iocs.txt`, `malware_domains.txt`, and `suspicious_ips.txt` in the `data/` directory.
+   - Download and place `GeoLite2-City.mmdb.gz` and `GeoLite2-ASN.mmdb` in the `data/` directory (available from [MaxMind](https://www.maxmind.com)).
 
-Protocol distribution statistics
-Top talker identification (highest traffic sources/destinations)
-Traffic timeline visualization
-Network communication graphs
+## Usage
+Run the script with a PCAP/PCAPNG file as an argument:
+```bash
+python sharklysis.py path/to/capture.pcap
+```
 
-## 📈Professional Reporting
+- The script validates the input file and processes it.
+- Outputs include:
+  - Console report summarizing traffic and security findings.
+  - HTML report in the `reports/` directory (e.g., `sharklysis_report_capture_YYYYMMDD_HHMMSS.html`).
+  - Charts in the `graphs/` directory (e.g., `protocols_capture.png`, `talkers_capture.png`).
+  - Logs in `sharklysis.log`.
 
-Interactive console reports for quick insights
-HTML reports with embedded visualizations
-Prioritized findings (High/Medium/Low severity)
-Exportable graphs and charts
+## Project Structure
+```
+sharklysis/
+├── sharklysis.py              # Main script
+├── requirements.txt           # Python dependencies
+├── README.md                 # This file
+├── .gitignore                # Git ignore file
+├──  # Threat intelligence and GeoIP data
+|── iocs.txt
+|── malware_domains.txt
+|── suspicious_ips.txt
+|── GeoLite2-City.mmdb.gz
+|── GeoLite2-ASN.mmdb
+├── reports/                  # Generated HTML reports
+├── graphs/                   # Generated charts
+└── temp/                     # Temporary files
+```
 
-## ⚙️Flexible Configuration
+## Notes
+- **GeoIP Databases**: Ensure `GeoLite2-City.mmdb.gz` is decompressed to `GeoLite2-City.mmdb` if required by your system.
+- **Large Files**: For PCAP files >100MB, temporary storage is used to optimize memory usage.
+- **Rate Limits**: WHOIS queries include a 1-second delay to avoid rate limiting.
+- **Logging**: Detailed logs are saved to `sharklysis.log` for debugging.
 
-Customizable threat intelligence feeds
-Adjustable detection thresholds
-Extensible plugin architecture
+## Contributing
+Contributions are welcome! Please:
+1. Fork the repository.
+2. Create a feature branch (`git checkout -b feature/YourFeature`).
+3. Commit changes (`git commit -m 'Add YourFeature'`).
+4. Push to the branch (`git push origin feature/YourFeature`).
+5. Open a pull request.
 
+## License
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
-# 🚀 Getting Started
-### Prerequisites
-Ensure the following are installed before running SharkLysis:
+## Authors
+- Saad Ali
+- Muhammad Saad Hanif
 
-Python: Version 3.8 or higher
-libpcap Libraries: Required for packet processing
-Memory: 4GB+ RAM (recommended for large PCAP files)
-GeoIP Databases (optional, for IP geolocation):
-Download GeoLite2-City.mmdb and GeoLite2-ASN.mmdb from MaxMind.
-Place them in the project root (excluded from Git tracking per .gitignore).
-
-
-
-### Installation
-Follow these steps to set up SharkLysis:
-
-Clone the Repository:
-git clone https://github.com/Saadmaliikk/SharkLysis.git
-cd SharkLysis
-
-
-Install Dependencies:
-pip install -r requirements.txt
-
-
-
-### Basic Usage
-Run SharkLysis on a PCAP/PCAPNG file:
-python sharklysis.py <path_to_pcap_file>
-
-Example:
-python sharklysis.py toolsmith.pcap
-
-
-# 📂 Project Structure
-### Directory Layout
-SharkLysis/
-├── assests/                  # Static assets (e.g., banner.png)
-├── graphs/                   # Generated network graphs
-├── reports/                  # HTML reports
-├── temp/                     # Temporary files
-├── iocs.txt                 # Custom indicators of compromise
-├── malware_domains.txt      # Known malicious domains
-├── suspicious_ips.txt       # Suspicious IP addresses
-├── LICENSE                  # MIT License
-├── README.md                # Project documentation
-├── requirements.txt         # Python dependencies
-├── sharklysis.py            # Main analysis script
-
-### Sample PCAP Files
-The repository includes sample PCAP files for testing:
-
-toolsmith.pcap: General network traffic for analysis.
-hao123-com_packet-injection.pcap: Contains potential packet injection activity.
-MyFile.png.pcapng: Example of a PCAPNG file with embedded image data.
-
-Note: These files are for demonstration. Use your own captured traffic for real-world analysis.
-
-# 📊 Sample Analysis Output
-### Console Report Preview
------------------------------- SECURITY FINDINGS -------------------------------
-
-Suspicious IPs Detected (3):
-  - 192.168.1.105 (Known malicious)
-  - 10.0.34.22 (Suspicious activity)
-  - 185.239.242.84 (Malware C2)
-
-Possible C2 Domains Detected (2):
-  - malware-domain.com
-  - c2-server.net
-
-SQL Injection Patterns Detected (12):
-  - /products.php?id=1' OR '1'='1
-  - /search.php?q=1 UNION SELECT...
-  - /admin/login.php?username=admin'--
-
-Weak Protocols Detected:
-  - TLS 1.0
-
-### Generated Files
-SharkLysis generates the following during analysis:
-
-Reports: HTML reports saved in reports/.
-Graphs: Visualizations in graphs/.
-Temporary Files: Data in temp/.
-
-
-# 🛠Configuration
-### Threat Intelligence Feeds
-
-iocs.txt: Add custom indicators of compromise (IoCs).
-malware_domains.txt: List known malicious domains.
-suspicious_ips.txt: List known malicious IP addresses.
-
-### GeoIP Databases
-
-Place GeoLite2-City.mmdb and GeoLite2-ASN.mmdb in the project root for geolocation (excluded from Git).
-
-### Detection Rules
-
-Modify the detect_malicious_patterns() function in sharklysis.py to add custom rules.
-
-
-# 🤝Contributing
-### How to Contribute
-We welcome contributions from the security community! Here’s how:
-
-Report Issues: Open an issue.
-Feature Requests: Suggest new features.
-Pull Requests: Submit code improvements.
-Documentation: Enhance docs and examples.
-
-### Development Setup
-
-Create a Virtual Environment:
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-
-
-Install Dependencies:
-pip install -r requirements.txt
-
-
-
-
-# 📜License
-Distributed under the MIT License. See LICENSE for details.
+## Acknowledgments
+- Built with [pyshark](https://github.com/KimiNewt/pyshark), [matplotlib](https://matplotlib.org/), and [networkx](https://networkx.org/).
+- GeoIP data provided by [MaxMind](https://www.maxmind.com).
